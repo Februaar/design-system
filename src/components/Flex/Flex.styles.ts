@@ -1,30 +1,19 @@
 import styled from "styled-components";
 import theme from "../../styles";
+import { FlexProps } from "./Flex";
 
-interface FlexContainerProps {
-  direction: string;
-  justify: string;
-  align: string;
-}
-
-export const FlexContainer = styled.div<FlexContainerProps>`
-  width: 380px;
-  height: 380px;
+export const StyledFlex = styled.div<FlexProps>`
   display: flex;
   flex-direction: ${({ direction }) => direction};
-  justify-content: ${({ justify }) => justify};
-  align-items: ${({ align }) => align};
-  padding: 24px;
-  background-color: ${theme.colors.gray[20]};
+  align-items: ${({ alignItems }) => alignItems};
+  justify-content: ${({ justifyContent }) => justifyContent};
+  gap: ${({ gap }) => gap}px;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
 `;
 
-export const Element = styled.div`
-  display: flex;
-  flex-direction: coulmn;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-  color: ${theme.colors.white1};
-  background-color: ${theme.colors.serenity[60]};
+export const Item = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: ${theme.colors.serenity[500]};
 `;

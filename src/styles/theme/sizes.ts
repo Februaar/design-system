@@ -1,21 +1,3 @@
-export const sm = {
-  width: "300px",
-  height: "32px",
-  fontSize: "14px",
-};
-
-export const md = {
-  width: "320px",
-  height: "42px",
-  fontSize: "16px",
-};
-
-export const lg = {
-  width: "340px",
-  height: "52px",
-  fontSize: "18px",
-};
-
 export const button = {
   sm: {
     fontSize: "14px",
@@ -49,6 +31,24 @@ export const input = {
   },
 };
 
+export const select = {
+  sm: {
+    width: "180px",
+    height: "42px",
+    fontSize: "14px",
+  },
+  md: {
+    width: "240px",
+    height: "42px",
+    fontSize: "16px",
+  },
+  lg: {
+    width: "280px",
+    height: "42px",
+    fontSize: "18px",
+  },
+};
+
 export const container = {
   sm: {
     width: "240px",
@@ -68,11 +68,9 @@ export const container = {
 };
 
 const sizes = {
-  sm,
-  md,
-  lg,
   button,
   input,
+  select,
   container,
 };
 
