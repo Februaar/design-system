@@ -1,48 +1,30 @@
+import { InputHTMLAttributes, PropsWithChildren } from "react";
 import * as SC from "./Input.styles";
-import {
-  setInputStyles,
-  InputSize,
-  InputVariant,
-  InputColor,
-  InputStyle,
-} from "./Input.utils";
+
+export type InputSize = "sm" | "md" | "lg";
+export type InputVariant = "primary" | "outlined";
+export type InputColor = "serenity" | "green";
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "color"> {
   size?: InputSize;
   variant?: InputVariant;
   color?: InputColor;
 }
 
-const Input: React.FC<InputProps> = ({
-  size = "md",
-  variant = "outlined",
-  color = "green",
-  placeholder,
+const Input = ({
+  size,
+  variant,
+  color,
+  disabled,
   ...props
-}) => {
-  const {
-    width,
-    height,
-    border,
-    fontSize,
-    fontColor,
-    inputColor,
-    backgroundColor,
-    hoverColor,
-  }: InputStyle = setInputStyles(size, variant, color);
+}: PropsWithChildren<InputProps>) => {
   return (
     <SC.StyledInput
-      width={width}
-      height={height}
-      border={border}
-      fontSize={fontSize}
-      fontColor={fontColor}
-      inputColor={inputColor}
-      backgroundColor={backgroundColor}
-      hoverColor={hoverColor}
+      size={size}
       variant={variant}
-      placeholder={placeholder}
+      color={color}
+      disabled={disabled}
       {...props}
     />
   );

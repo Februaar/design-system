@@ -18,19 +18,34 @@ export const lg = {
 
 export const button = {
   sm: {
-    width: "80px",
-    height: "40px",
     fontSize: "14px",
+    padding: "10px 12px",
+    borderRadius: "12px",
   },
   md: {
-    width: "100px",
-    height: "50px",
     fontSize: "16px",
+    padding: "12px 16px",
+    borderRadius: "12px",
   },
   lg: {
-    width: "120px",
-    height: "60px",
     fontSize: "18px",
+    padding: "14px 20px",
+    borderRadius: "12px",
+  },
+};
+
+export const input = {
+  sm: {
+    fontSize: "14px",
+    padding: "10px 12px",
+  },
+  md: {
+    fontSize: "16px",
+    padding: "12px 16px",
+  },
+  lg: {
+    fontSize: "18px",
+    padding: "14px 20px",
   },
 };
 
@@ -57,6 +72,7 @@ const sizes = {
   md,
   lg,
   button,
+  input,
   container,
 };
 

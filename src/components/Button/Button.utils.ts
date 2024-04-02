@@ -1,89 +1,87 @@
+import { css } from "styled-components";
 import theme from "../../styles";
+import { ButtonProps, ButtonSize } from "./Button";
 
-export type ButtonSize = "sm" | "md" | "lg";
-export type ButtonVariant = "contained" | "outlined" | "text";
-export type ButtonColor = "serenity" | "roseQuartz" | "gray";
-
-interface ButtonStyle {
-  height: string;
-  width: string;
-  border: string;
+interface ButtonSizeProps {
   fontSize: string;
-  fontColor: string;
-  backgroundColor: string;
-  hoverColor: string;
+  padding: string;
+  borderRadius: string;
 }
 
-export const setButtonStyles = (
-  size: ButtonSize,
-  variant: ButtonVariant,
-  color: ButtonColor
-): ButtonStyle => {
-  const buttonSizeMap = {
-    sm: {
-      width: theme.sizes.button.sm.width,
-      height: theme.sizes.button.sm.height,
-      fontSize: theme.sizes.button.sm.fontSize,
-    },
-    md: {
-      width: theme.sizes.button.md.width,
-      height: theme.sizes.button.md.height,
-      fontSize: theme.sizes.button.md.fontSize,
-    },
-    lg: {
-      width: theme.sizes.button.lg.width,
-      height: theme.sizes.button.lg.height,
-      fontSize: theme.sizes.button.lg.fontSize,
-    },
-  };
+const ButtonTypebySize: { [key in ButtonSize]: ButtonSizeProps } = {
+  sm: {
+    ...theme.sizes.button.sm,
+  },
+  md: {
+    ...theme.sizes.button.md,
+  },
+  lg: {
+    ...theme.sizes.button.lg,
+  },
+};
 
-  const buttonColorMap = {
-    serenity: {
-      buttonColor: theme.colors.serenity[60],
-      hoverColor: theme.colors.serenity[100],
-      fontColor: theme.colors.white1,
-    },
-    roseQuartz: {
-      buttonColor: theme.colors.roseQuartz[60],
-      hoverColor: theme.colors.roseQuartz[100],
-      fontColor: theme.colors.black1,
-    },
-    gray: {
-      buttonColor: theme.colors.gray[60],
-      hoverColor: theme.colors.gray[100],
-      fontColor: theme.colors.black1,
-    },
-  };
+const ButtonColorType = {
+  serenity: {
+    buttonColor: theme.colors.serenity[300],
+    borderColor: theme.colors.serenity[500],
+  },
+  roseQuartz: {
+    buttonColor: theme.colors.roseQuartz[300],
+    borderColor: theme.colors.roseQuartz[500],
+  },
+  gray: {
+    buttonColor: theme.colors.gray[300],
+    borderColor: theme.colors.gray[500],
+  },
+};
 
-  const buttonStyle = {
-    contained: {
-      width: buttonSizeMap[size].width,
-      height: buttonSizeMap[size].height,
-      fontSize: buttonSizeMap[size].fontSize,
-      border: "none",
-      fontColor: buttonColorMap[color].fontColor,
-      backgroundColor: buttonColorMap[color].buttonColor,
-      hoverColor: buttonColorMap[color].hoverColor,
-    },
-    outlined: {
-      width: buttonSizeMap[size].width,
-      height: buttonSizeMap[size].height,
-      fontSize: buttonSizeMap[size].fontSize,
-      border: `1px solid ${buttonColorMap[color].buttonColor}`,
-      fontColor: buttonColorMap[color].fontColor,
-      backgroundColor: "transparent",
-      hoverColor: buttonColorMap[color].hoverColor,
-    },
-    text: {
-      width: buttonSizeMap[size].width,
-      height: buttonSizeMap[size].height,
-      fontSize: buttonSizeMap[size].fontSize,
-      border: "none",
-      fontColor: buttonColorMap[color].fontColor,
-      backgroundColor: "transparent",
-      hoverColor: buttonColorMap[color].hoverColor,
-    },
-  };
+export const getButtonStyles = ({
+  size,
+  variant,
+  color,
+  _hover,
+  _focus,
+}: ButtonProps): ReturnType<typeof css> => {
+  const sizeProps = size ? ButtonTypebySize[size] : null;
+  const colorProps = color ? ButtonColorType[color] : null;
 
-  return buttonStyle[variant];
+  return css`
+    font-size: ${sizeProps?.fontSize};
+    padding: ${sizeProps?.padding};
+    border: none;
+    border-radius: ${sizeProps?.borderRadius};
+    color: ${color ? "#000" : "inherit"};
+    background-color: transparent;
+    border-color: ${colorProps?.borderColor};
+
+    ${variant === "primary" &&
+    css`
+      color: ${colorProps?.buttonColor};
+    `}
+
+    ${variant === "outlined" &&
+    css`
+      border: 1px solid ${colorProps?.borderColor};
+    `}
+
+    ${variant === "contained" &&
+    css`
+      background-color: ${colorProps?.buttonColor};
+    `}
+    
+    &:hover {
+      ${_hover &&
+      css`
+        color: ${_hover.color};
+        background-color: ${_hover.backgroundColor};
+      `}
+    }
+
+    &:focus {
+      ${_focus &&
+      css`
+        border-color: ${_focus.borderColor};
+      `}
+    }
+  `;
 };

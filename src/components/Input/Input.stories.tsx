@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Stack } from "./Input.styles";
 import Input, { InputProps } from "./Input";
 
 const meta: Meta<typeof Input> = {
@@ -14,7 +13,7 @@ const meta: Meta<typeof Input> = {
       options: ["sm", "md", "lg"],
     },
     variant: {
-      options: ["outlined", "filled", "unstyled"],
+      options: ["primary", "outlined"],
     },
     color: {
       control: { type: "radio" },
@@ -25,97 +24,29 @@ const meta: Meta<typeof Input> = {
 
 export default meta;
 
-export const OutlinedInput: StoryObj<InputProps> = {
+export const PrimaryInput: StoryObj<InputProps> = {
   args: {
+    size: "md",
     color: "serenity",
   },
   render: (args) => {
     return (
       <>
-        <Stack>
-          <Input
-            size="sm"
-            variant="outlined"
-            color={args.color}
-            placeholder="outlined input"
-          />
-          <Input
-            size="md"
-            variant="outlined"
-            color={args.color}
-            placeholder="outlined input"
-          ></Input>
-          <Input
-            size="lg"
-            variant="outlined"
-            color={args.color}
-            placeholder="outlined input"
-          ></Input>
-        </Stack>
+        <Input size={args.size} variant="primary" color={args.color}></Input>
       </>
     );
   },
 };
 
-export const FilledInput: StoryObj<InputProps> = {
+export const OutlinedInput: StoryObj<InputProps> = {
   args: {
+    size: "md",
     color: "green",
   },
   render: (args) => {
     return (
       <>
-        <Stack>
-          <Input
-            size="sm"
-            variant="filled"
-            color={args.color}
-            placeholder="filled input"
-          ></Input>
-          <Input
-            size="md"
-            variant="filled"
-            color={args.color}
-            placeholder="filled input"
-          ></Input>
-          <Input
-            size="lg"
-            variant="filled"
-            color={args.color}
-            placeholder="filled input"
-          ></Input>
-        </Stack>
-      </>
-    );
-  },
-};
-
-export const UnstyledInput: StoryObj<InputProps> = {
-  args: {
-    color: "serenity",
-  },
-  render: (args) => {
-    return (
-      <>
-        <Stack>
-          <Input
-            size="sm"
-            variant="unstyled"
-            color={args.color}
-            placeholder="unstyled input"
-          ></Input>
-          <Input
-            size="md"
-            variant="unstyled"
-            color={args.color}
-            placeholder="unstyled input"
-          ></Input>
-          <Input
-            size="lg"
-            variant="unstyled"
-            color={args.color}
-            placeholder="unstyled input"
-          ></Input>
-        </Stack>
+        <Input size={args.size} variant="outlined" color={args.color}></Input>
       </>
     );
   },

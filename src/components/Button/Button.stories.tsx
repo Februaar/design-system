@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Stack } from "./Button.styles";
 import Button, { ButtonProps } from "./Button";
 
 const meta: Meta<typeof Button> = {
@@ -14,7 +13,7 @@ const meta: Meta<typeof Button> = {
       options: ["sm", "md", "lg"],
     },
     variant: {
-      options: ["contained", "outlined", "text"],
+      options: ["primary", "contained", "outlined"],
     },
     color: {
       control: { type: "radio" },
@@ -25,24 +24,43 @@ const meta: Meta<typeof Button> = {
 
 export default meta;
 
+export const PrimaryButton: StoryObj<ButtonProps> = {
+  args: {
+    size: "md",
+    color: "gray",
+  },
+  render: (args) => {
+    return (
+      <>
+        <Button
+          size={args.size}
+          variant="primary"
+          color={args.color}
+          _hover={{ color: "#fff", backgroundColor: "#f7cac9" }}
+        >
+          마우스를 올려보세요
+        </Button>
+      </>
+    );
+  },
+};
+
 export const ContainedButton: StoryObj<ButtonProps> = {
   args: {
+    size: "md",
     color: "serenity",
   },
   render: (args) => {
     return (
       <>
-        <Stack>
-          <Button size="sm" variant="contained" color={args.color}>
-            Button
-          </Button>
-          <Button size="md" variant="contained" color={args.color}>
-            Button
-          </Button>
-          <Button size="lg" variant="contained" color={args.color}>
-            Button
-          </Button>
-        </Stack>
+        <Button
+          size={args.size}
+          variant="contained"
+          color={args.color}
+          _hover={{ color: "#fff", backgroundColor: "#f7cac9" }}
+        >
+          마우스를 올려보세요
+        </Button>
       </>
     );
   },
@@ -50,46 +68,19 @@ export const ContainedButton: StoryObj<ButtonProps> = {
 
 export const OutlinedButton: StoryObj<ButtonProps> = {
   args: {
-
     color: "roseQuartz",
   },
   render: (args) => {
     return (
       <>
-        <Stack>
-          <Button size="sm" variant="outlined" color={args.color}>
-            Button
-          </Button>
-          <Button size="md" variant="outlined" color={args.color}>
-            Button
-          </Button>
-          <Button size="lg" variant="outlined" color={args.color}>
-            Button
-          </Button>
-        </Stack>
-      </>
-    );
-  },
-};
-
-export const TextButton: StoryObj<ButtonProps> = {
-  args: {
-    color: "gray",
-  },
-  render: (args) => {
-    return (
-      <>
-        <Stack>
-          <Button size="sm" variant="text" color={args.color}>
-            Button
-          </Button>
-          <Button size="md" variant="text" color={args.color}>
-            Button
-          </Button>
-          <Button size="lg" variant="text" color={args.color}>
-            Button
-          </Button>
-        </Stack>
+        <Button
+          size="md"
+          variant="outlined"
+          color={args.color}
+          _focus={{ borderColor: "#92a8d1" }}
+        >
+          버튼을 클릭해보세요
+        </Button>
       </>
     );
   },
