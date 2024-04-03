@@ -1,56 +1,33 @@
+import React, { PropsWithChildren } from "react";
 import * as SC from "./Select.styles";
-import {
-  setSelectStyles,
-  SelectSize,
-  SelectVariant,
-  SelectColor,
-  SelectStyle,
-} from "./Select.utils";
+import SelectProvider from "./Select.context";
+import Trigger from "./Trigger";
+import OptionList from "./OptionList";
+import Option from "./Option";
+
+export type SelectSize = "sm" | "md" | "lg";
 
 export interface SelectProps
   extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "size"> {
   size?: SelectSize;
-  variant?: SelectVariant;
-  color?: SelectColor;
 }
 
-const Select: React.FC<SelectProps> = ({
-  size = "md",
-  variant = "filled",
-  color = "serenity",
-  disabled = false,
+const Select = ({
+  size,
+  children,
   ...props
-}) => {
-  const {
-    width,
-    height,
-    border,
-    fontSize,
-    selectColor,
-    backgroundColor,
-    hoverColor,
-    disabledColor,
-  }: SelectStyle = setSelectStyles(size, variant, color);
+}: PropsWithChildren<SelectProps>) => {
   return (
-    <SC.StyledSelect
-      width={width}
-      height={height}
-      border={border}
-      fontSize={fontSize}
-      selectColor={selectColor}
-      backgroundColor={backgroundColor}
-      hoverColor={hoverColor}
-      disabledColor={disabledColor}
-      disabled={disabled}
-      variant={variant}
-      {...props}
-    >
-      <option value="">Select option</option>
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
-    </SC.StyledSelect>
+    <SelectProvider>
+      <SC.SelectContainer size={size} {...props}>
+        {children}
+      </SC.SelectContainer>
+    </SelectProvider>
   );
 };
 
 export default Select;
+
+Select.Trigger = Trigger;
+Select.OptionList = OptionList;
+Select.Option = Option;

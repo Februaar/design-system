@@ -1,76 +1,68 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import theme from "../../styles";
+import { SelectProps } from "./Select";
+import { getSelectStyles } from "./Select.utils";
 
-export interface StyledSelectProps {
-  width: string;
-  height: string;
-  border: string;
-  fontSize: string;
-  selectColor: string;
-  backgroundColor: string;
-  hoverColor: string;
-  disabledColor: string;
-  variant: "outlined" | "filled";
-}
-
-export const StyledSelect = styled.select<StyledSelectProps>`
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
-  border: ${({ border }) => border};
-  outline: none;
-  border-radius: 6px;
-  padding: 0 12px;
-  font-size: ${({ fontSize }) => fontSize};
-  background-color: ${({ backgroundColor }) => backgroundColor};
+export const SelectContainer = styled.div<SelectProps>`
+  ${getSelectStyles}
+  position: relative;
+  border-radius: 8px;
+  color: #000;
+  background-color: transparent;
 
   &: disabled {
     cursor: not-allowed;
   }
-
-  ${({ variant, hoverColor, disabled, disabledColor }) =>
-    variant === "outlined" &&
-    css`
-      &:focus {
-        border: 2px solid ${hoverColor};
-      }
-
-      &:not(:disabled):hover {
-        border: 1px solid ${hoverColor};
-        transition: all 0.3s ease-in-out;
-      }
-
-      ${disabled &&
-      css`
-        color: ${disabledColor};
-        border-color: ${disabledColor};
-        background-color: transparent;
-      `}
-    `}
-
-  ${({ variant, hoverColor, disabled, disabledColor }) =>
-    variant === "filled" &&
-    css`
-      &:focus {
-        border: 2px solid ${hoverColor};
-        background-color: transparent;
-        pointer-events: none;
-      }
-
-      &:not(:disabled):hover {
-        background-color: ${hoverColor};
-        transition: all 0.3s ease-in-out;
-      }
-
-      ${disabled &&
-      css`
-        color: ${disabledColor};
-        border: 1px solid ${disabledColor};
-        background-color: transparent;
-      `}
-    `}
 `;
 
-export const Stack = styled.div`
+export const TriggerButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  border: 1px solid ${theme.colors.serenity[300]};
+  border-radius: 8px;
+  background-color: transparent;
+`;
+
+export const SelectedOption = styled.span`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+export const ArrowIconWrapper = styled.div`
+  height: 24px;
+`;
+
+export const DropDown = styled.ul`
+  position: absolute;
+  margin: 0;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 3px;
+  padding: 8px 0;
+  border-radius: 8px;
+  width: 100%;
+  max-height: 220px;
+  background-color: #fff;
+  box-shadow: 0px 8px 12px rgba(38, 50, 56, 0.1);
+  list-style: none;
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 1;
+`;
+
+export const OptionItem = styled.li`
+  padding: 8px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${theme.colors.serenity[300]};
+  }
 `;

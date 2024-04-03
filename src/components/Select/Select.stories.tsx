@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Stack } from "./Select.styles";
 import Select, { SelectProps } from "./Select";
 
 const meta: Meta<typeof Select> = {
@@ -13,43 +12,27 @@ const meta: Meta<typeof Select> = {
     size: {
       options: ["sm", "md", "lg"],
     },
-    variant: {
-      options: ["outlined", "filled"],
-    },
   },
+  decorators: [],
 };
 
 export default meta;
 
-export const OutlinedSelect: StoryObj<SelectProps> = {
+export const ExampleSelect: StoryObj<SelectProps> = {
   args: {
-    variant: "outlined",
+    size: "md",
   },
   render: (args) => {
     return (
       <>
-        <Stack>
-          <Select size="sm" variant={args.variant} disabled></Select>
-          <Select size="md" variant={args.variant}></Select>
-          <Select size="lg" variant={args.variant}></Select>
-        </Stack>
-      </>
-    );
-  },
-};
-
-export const FilledSelect: StoryObj<SelectProps> = {
-  args: {
-    variant: "filled",
-  },
-  render: (args) => {
-    return (
-      <>
-        <Stack>
-          <Select size="sm" variant={args.variant}></Select>
-          <Select size="md" variant={args.variant}></Select>
-          <Select size="lg" variant={args.variant}></Select>
-        </Stack>
+        <Select {...args}>
+          <Select.Trigger />
+          <Select.OptionList>
+            <Select.Option value="option 1">option 1</Select.Option>
+            <Select.Option value="option 2">option 2</Select.Option>
+            <Select.Option value="option 3">option 3</Select.Option>
+          </Select.OptionList>
+        </Select>
       </>
     );
   },

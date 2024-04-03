@@ -34,17 +34,17 @@ export const input = {
 export const select = {
   sm: {
     width: "180px",
-    height: "42px",
+    height: "44px",
     fontSize: "14px",
   },
   md: {
     width: "240px",
-    height: "42px",
+    height: "50px",
     fontSize: "16px",
   },
   lg: {
     width: "280px",
-    height: "42px",
+    height: "56px",
     fontSize: "18px",
   },
 };
