@@ -8,19 +8,25 @@ interface ButtonSizeProps {
   borderRadius: string;
 }
 
-const ButtonTypebySize: { [key in ButtonSize]: ButtonSizeProps } = {
+const buttonTypebySize: { [key in ButtonSize]: ButtonSizeProps } = {
   sm: {
-    ...theme.sizes.button.sm,
+    fontSize: theme.sizes.fontSize.sm,
+    padding: "10px 12px",
+    borderRadius: "16px",
   },
   md: {
-    ...theme.sizes.button.md,
+    fontSize: theme.sizes.fontSize.md,
+    padding: "12px 16px",
+    borderRadius: "18px",
   },
   lg: {
-    ...theme.sizes.button.lg,
+    fontSize: theme.sizes.fontSize.lg,
+    padding: "14px 20px",
+    borderRadius: "20px",
   },
 };
 
-const ButtonColorType = {
+const buttonColorType = {
   serenity: {
     buttonColor: theme.colors.serenity[300],
     borderColor: theme.colors.serenity[500],
@@ -42,8 +48,8 @@ export const getButtonStyles = ({
   _hover,
   _focus,
 }: ButtonProps): ReturnType<typeof css> => {
-  const sizeProps = size ? ButtonTypebySize[size] : null;
-  const colorProps = color ? ButtonColorType[color] : null;
+  const sizeProps = size ? buttonTypebySize[size] : null;
+  const colorProps = color ? buttonColorType[color] : null;
 
   return css`
     font-size: ${sizeProps?.fontSize};

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../../styles"
 
 export const ModalBackdrop = styled.div`
   position: fixed;
@@ -9,7 +10,7 @@ export const ModalBackdrop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: ${theme.zIndex.overlay};
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
@@ -19,7 +20,7 @@ export const Content = styled.div`
   height: 100%;
   border-radius: 8px;
   background-color: #fff;
-  z-index: 1000;
+  z-index: ${theme.zIndex.modal};
 `;
 
 export const Header = styled.div`

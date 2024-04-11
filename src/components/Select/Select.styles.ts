@@ -29,7 +29,8 @@ export const TriggerButton = styled.button`
   background-color: transparent;
 `;
 
-export const SelectedOption = styled.span`
+export const SelectedOption = styled.div`
+  padding: 8px 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -55,7 +56,12 @@ export const DropDown = styled.ul`
   list-style: none;
   overflow: hidden;
   overflow-y: auto;
-  z-index: 1;
+  z-index: ${theme.zIndex.popover};
+`;
+
+export const OptionLabel = styled.div`
+  padding: 8px 16px;
+  color: #888888;
 `;
 
 export const OptionItem = styled.li`

@@ -9,22 +9,28 @@ interface SelectSizeProps {
   height: CSSProperties["height"];
 }
 
-const SelectTypebySize: { [key in SelectSize]: SelectSizeProps } = {
+const selectTypebySize: { [key in SelectSize]: SelectSizeProps } = {
   sm: {
-    ...theme.sizes.select.sm,
+    width: "180px",
+    height: "44px",
+    fontSize: theme.sizes.fontSize.sm,
   },
   md: {
-    ...theme.sizes.select.md,
+    width: "240px",
+    height: "50px",
+    fontSize: theme.sizes.fontSize.md,
   },
   lg: {
-    ...theme.sizes.select.lg,
+    width: "280px",
+    height: "56px",
+    fontSize: theme.sizes.fontSize.lg,
   },
 };
 
 export const getSelectStyles = ({
   size,
 }: SelectProps): ReturnType<typeof css> => {
-  const sizeProps = size ? SelectTypebySize[size] : null;
+  const sizeProps = size ? selectTypebySize[size] : null;
 
   return css`
     width: ${sizeProps?.width};

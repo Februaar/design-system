@@ -26,11 +26,12 @@ export const ExampleSelect: StoryObj<SelectProps> = {
     return (
       <>
         <Select {...args}>
-          <Select.Trigger />
+          <Select.Trigger placeholder="pick your animal" />
           <Select.OptionList>
-            <Select.Option value="option 1">option 1</Select.Option>
-            <Select.Option value="option 2">option 2</Select.Option>
-            <Select.Option value="option 3">option 3</Select.Option>
+            <Select.Label>Animals</Select.Label>
+            <Select.Option value="tiger">Tiger</Select.Option>
+            <Select.Option value="cat">Cat</Select.Option>
+            <Select.Option value="dog">Dog</Select.Option>
           </Select.OptionList>
         </Select>
       </>

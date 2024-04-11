@@ -1,4 +1,4 @@
-export const serenity = {
+const serenity = {
   500: "#92a8d1",
   400: "#a8b9da",
   300: "#becbe3",
@@ -6,7 +6,7 @@ export const serenity = {
   100: "#e9eef6",
 };
 
-export const roseQuartz = {
+const roseQuartz = {
   500: "#f7cac9",
   400: "#f9d5d4",
   300: "#fadfdf",
@@ -14,7 +14,7 @@ export const roseQuartz = {
   100: "#fdf4f4",
 };
 
-export const gray = {
+const gray = {
   500: "#999999",
   400: "#adadad",
   300: "#c2c2c2",
@@ -22,7 +22,7 @@ export const gray = {
   100: "#f5f5f5",
 };
 
-export const green = {
+const green = {
   500: "#9fd192",
   400: "#b2daa8",
   300: "#c5e3be",
@@ -30,11 +30,9 @@ export const green = {
   100: "#ecf6e9",
 };
 
-const colors = {
+export const colors = {
   serenity,
   roseQuartz,
   gray,
   green,
 };
-
-export default colors;

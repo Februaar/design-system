@@ -33,7 +33,7 @@ export const PrimaryModal: StoryObj<ModalProps> = {
         {isOpen ? null : (
           <Button
             onClick={handleOpen}
-            size="md"
+            size="sm"
             color="serenity"
             variant="contained"
           >
@@ -56,15 +56,15 @@ export const PrimaryModal: StoryObj<ModalProps> = {
                 color="serenity"
                 variant="outlined"
               >
-                확인
+                취소
               </Button>
               <Button
                 onClick={handleClose}
                 size="sm"
-                color="serenity"
+                color="roseQuartz"
                 variant="outlined"
               >
-                취소
+                확인
               </Button>
             </Modal.Footer>
           </Modal.Content>

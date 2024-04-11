@@ -7,19 +7,22 @@ interface InputSizeProps {
   padding: string;
 }
 
-const InputTypebySize: { [key in InputSize]: InputSizeProps } = {
+const inputTypebySize: { [key in InputSize]: InputSizeProps } = {
   sm: {
-    ...theme.sizes.input.sm,
+    fontSize: theme.sizes.fontSize.sm,
+    padding: "10px 12px",
   },
   md: {
-    ...theme.sizes.input.md,
+    fontSize: theme.sizes.fontSize.md,
+    padding: "12px 16px",
   },
   lg: {
-    ...theme.sizes.input.lg,
+    fontSize: theme.sizes.fontSize.lg,
+    padding: "14px 20px",
   },
 };
 
-const InputColorType = {
+const inputColorType = {
   serenity: {
     inputColor: theme.colors.serenity[200],
     hoverColor: theme.colors.serenity[300],
@@ -37,8 +40,8 @@ export const getInputStyles = ({
   variant,
   color,
 }: InputProps): ReturnType<typeof css> => {
-  const sizeProps = size ? InputTypebySize[size] : null;
-  const colorProps = color ? InputColorType[color] : null;
+  const sizeProps = size ? inputTypebySize[size] : null;
+  const colorProps = color ? inputColorType[color] : null;
 
   return css`
     font-size: ${sizeProps?.fontSize};

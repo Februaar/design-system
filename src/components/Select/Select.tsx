@@ -1,33 +1,43 @@
 import React, { PropsWithChildren } from "react";
 import * as SC from "./Select.styles";
-import SelectProvider from "./Select.context";
-import Trigger from "./Trigger";
-import OptionList from "./OptionList";
-import Option from "./Option";
+import { SelectContext } from "./Select.context";
+import { useSelect } from "./Select.hooks";
+import SelectTrigger from "./SelectTrigger";
+import SelectOptionList from "./SelectOptionList";
+import SelectOption, { SelectLabel } from "./SelectOption";
 
 export type SelectSize = "sm" | "md" | "lg";
 
 export interface SelectProps
   extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "size"> {
   size?: SelectSize;
+  value?: string;
 }
 
 const Select = ({
   size,
+  value,
   children,
   ...props
 }: PropsWithChildren<SelectProps>) => {
+  const { isOpen, openSelect, closeSelect, option, setOption } = useSelect({
+    value,
+  });
+
   return (
-    <SelectProvider>
+    <SelectContext.Provider
+      value={{ isOpen, openSelect, closeSelect, option, setOption }}
+    >
       <SC.SelectContainer size={size} {...props}>
         {children}
       </SC.SelectContainer>
-    </SelectProvider>
+    </SelectContext.Provider>
   );
 };
 
 export default Select;
 
-Select.Trigger = Trigger;
-Select.OptionList = OptionList;
-Select.Option = Option;
+Select.Trigger = SelectTrigger;
+Select.OptionList = SelectOptionList;
+Select.Label = SelectLabel;
+Select.Option = SelectOption;
